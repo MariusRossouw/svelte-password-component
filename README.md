@@ -29,7 +29,7 @@
   special: { cnt: 1 } // At least 1 Special character (@#$%~`!^&*()_+\-=\[\]{};':"\\|,.<>\/?)
 }
 ```
-7. ```on:passwordCheck={handlePasswordEvent}``` Optional, Dispatch handler from the component that returns an Object containing the following
+8. ```on:passwordCheck={handlePasswordEvent}``` Optional, Dispatch handler from the component that returns an Object containing the following
 ```
   {
     password: "", // The typed password value as string
