@@ -198,14 +198,14 @@
 
     input[type="text"] + .eye {
         background-image: var(
-            --passwordInputTextBackground-image,
-            url("/eye_closed.svg")
+            --passwordInputTextBackgroundImage,
+            url("./eye_closed.svg")
         );
     }
     input[type="password"] + .eye {
         background-image: var(
-            --paswordInputPasswordBackground-image,
-            url("/eye_open.svg")
+            --paswordInputPasswordBackgroundImage,
+            url("./eye_open.svg")
         );
     }
     .icon {
@@ -213,22 +213,22 @@
         margin-left: var(--passwordIconMarginLeft, 5px);
         background: var(
             --passwordIconbackground,
-            url("lock.svg") no-repeat left
+            url("./lock.svg") no-repeat left
         );
         background-size: var(--passwordIconBackgroundSize, 13px);
     }
     .eye {
-        margin-right: var(--passwordEye-marginRight, 5px);
-        height: var(--passwordEye-height, 20px);
-        width: var(--passwordEye-width, 20px);
-        display: var(--passwordEye-display, inline);
-        float: var(--passwordEye-float, right);
-        right: var(--passwordEye-right, 15px);
-        top: var(--passwordEye-top, 42px);
-        background-size: var(--passwordEyeBackground-size, 100%);
-        background-repeat: var(--passwordEyeBackground-repeat, no-repeat);
+        margin-right: var(--passwordEyeMarginRight, 5px);
+        height: var(--passwordEyeHeight, 20px);
+        width: var(--passwordEyeWidth, 20px);
+        display: var(--passwordEyeDisplay, inline);
+        float: var(--passwordEyeFloat, right);
+        right: var(--passwordEyeRight, 15px);
+        top: var(--passwordEyeTop, 42px);
+        background-size: var(--passwordEyeBackgroundSize, 100%);
+        background-repeat: var(--passwordEyeBackgroundRepeat, no-repeat);
         &:hover {
-            cursor: var(--passwordEyeHover-cursor, pointer);
+            cursor: var(--passwordEyeHoverCursor, pointer);
         }
     }
 
@@ -238,7 +238,7 @@
         border-color: var(--passwordGoodBorderColor, olivedrab);
         background-image: var(
             --passwordGoodBackgroundImage,
-            url("/check.svg")
+            url("./check.svg")
         );
         background-repeat: var(--passwordGoodBackgroundRepeat, no-repeat);
     }
@@ -248,7 +248,7 @@
         border-color: var(--passwordBadBorderColor, brown);
         background-image: var(
             --passwordBadBackgroundImage,
-            url("/cross.svg")
+            url("./cross.svg")
         );
         background-repeat: var(--passwordBadBackgroundRepeat, no-repeat);
     }
