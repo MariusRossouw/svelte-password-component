@@ -18,7 +18,7 @@
 3. ```{showIcon}``` Optional, Boolean to display the icon on the left of the input field
 4. ```{showHideToggle}``` Optional, Boolean to display the toggle icon on the right of the input field in order to display the password as text inside the input field
 5. ```bind:password``` Optional, String to bind to the password
-6. ```bind:validated``` Optional, String to bind to to check if all validations have passed
+6. ```bind:validated``` Optional, Boolean to bind to to check if all validations have passed
 7. ```bind:validate``` Optional, Object specifying what to validate against, defaulting to
 ```
 {
