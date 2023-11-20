@@ -32,4 +32,3 @@
 <p>Password: {password}</p>
 <p>Validated: {validated}</p>
 <p>Validate: {JSON.stringify(validate,null,2)}</p>
-<Password />

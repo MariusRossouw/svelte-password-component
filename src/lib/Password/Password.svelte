@@ -199,13 +199,13 @@
     input[type="text"] + .eye {
         background-image: var(
             --passwordInputTextBackgroundImage,
-            url("./eye_closed.svg")
+            url("https://raw.githubusercontent.com/MariusRossouw/svelte-password-component/0954bf51d61e9abe8e70359c8cda1cb8f88db105/static/eye_closed.svg")
         );
     }
     input[type="password"] + .eye {
         background-image: var(
             --paswordInputPasswordBackgroundImage,
-            url("./eye_open.svg")
+            url("https://raw.githubusercontent.com/MariusRossouw/svelte-password-component/0954bf51d61e9abe8e70359c8cda1cb8f88db105/static/eye_open.svg")
         );
     }
     .icon {
@@ -213,7 +213,7 @@
         margin-left: var(--passwordIconMarginLeft, 5px);
         background: var(
             --passwordIconbackground,
-            url("./lock.svg") no-repeat left
+            url("https://raw.githubusercontent.com/MariusRossouw/svelte-password-component/0954bf51d61e9abe8e70359c8cda1cb8f88db105/static/lock.svg") no-repeat left
         );
         background-size: var(--passwordIconBackgroundSize, 13px);
     }
@@ -238,7 +238,7 @@
         border-color: var(--passwordGoodBorderColor, olivedrab);
         background-image: var(
             --passwordGoodBackgroundImage,
-            url("./check.svg")
+            url("https://raw.githubusercontent.com/MariusRossouw/svelte-password-component/0954bf51d61e9abe8e70359c8cda1cb8f88db105/static/check.svg")
         );
         background-repeat: var(--passwordGoodBackgroundRepeat, no-repeat);
     }
@@ -248,7 +248,7 @@
         border-color: var(--passwordBadBorderColor, brown);
         background-image: var(
             --passwordBadBackgroundImage,
-            url("./cross.svg")
+            url("https://raw.githubusercontent.com/MariusRossouw/svelte-password-component/0954bf51d61e9abe8e70359c8cda1cb8f88db105/static/cross.svg")
         );
         background-repeat: var(--passwordBadBackgroundRepeat, no-repeat);
     }
