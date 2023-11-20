@@ -4,13 +4,20 @@
 
 1. Ensure you have node installed on your OS (v19 and above - recommended)
 2. Navigate to the app where you would like to use the component and run the following in your terminal
-```npm install svelte-tab-component --save```
+```bash
+npm install svelte-tab-component --save
+```
 
 ## How to use the component
 
-1. Inside the script tag of your .svelte file ```import { Password } from 'svelte-password-component'```
+1. Inside the script tag of your .svelte file 
+```javascript
+import { Password } from 'svelte-password-component'
+```
 2. Inside an HTML element use the imported Password component like so
-```<Password bind:password bind:validated bind:validate {showValidations} {showIcon} {showHideToggle} {placeholder} {suggestPassword} on:passwordCheck={handlePasswordEvent}/> ```
+```javascript
+<Password bind:password bind:validated bind:validate {showValidations} {showIcon} {showHideToggle} {placeholder} {suggestPassword} on:passwordCheck={handlePasswordEvent}/>
+```
 
 ## Props, handlers and bindings
 1. ```{placeholder}``` Optional, Placeholder String in the password input field
@@ -21,7 +28,7 @@
 6. ```bind:password``` Optional, String to bind to the password
 7. ```bind:validated``` Optional, Boolean to bind to to check if all validations have passed
 8. ```bind:validate``` Optional, Object specifying what to validate against, defaulting to
-```
+```json
 {
   length: { min: 12 }, // A total of 12 character in length
   uppercase: { min: 1 }, // At least 1 Uppercase letter
@@ -31,7 +38,7 @@
 }
 ```
 9. ```on:passwordCheck={handlePasswordEvent}``` Optional, Dispatch handler from the component that returns an Object containing the following
-```
+```json
   {
     password: "", // The typed password value as string
     validate: {}, // The individual validations
@@ -41,7 +48,7 @@
 
 ## Example
 ```+page.svelte```
-``` 
+``` javascript
     <script>
     import { Password } from "svelte-password-component";
     let password = "";
@@ -83,7 +90,7 @@
 
 ## Styling
 Can be set with variables associated with every element
-```
+```css
 --passwordFormBorder
 --passwordFormPadding
 --passwordInputBorder
