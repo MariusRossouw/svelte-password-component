@@ -10,26 +10,27 @@
 
 1. Inside the script tag of your .svelte file ```import { Password } from 'svelte-password-component'```
 2. Inside an HTML element use the imported Password component like so
-```<Password {placeholder} {showValidations} {showIcon} {showHideToggle} bind:password bind:validated bind:validate  on:passwordCheck={handlePasswordEvent}/> ```
+```<Password bind:password bind:validated bind:validate {showValidations} {showIcon} {showHideToggle} {placeholder} {suggestPassword} on:passwordCheck={handlePasswordEvent}/> ```
 
 ## Props, handlers and bindings
 1. ```{placeholder}``` Optional, Placeholder String in the password input field
 2. ```{showValidations}``` Optional, Boolean to display build in validation checkers
 3. ```{showIcon}``` Optional, Boolean to display the icon on the left of the input field
 4. ```{showHideToggle}``` Optional, Boolean to display the toggle icon on the right of the input field in order to display the password as text inside the input field
-5. ```bind:password``` Optional, String to bind to the password
-6. ```bind:validated``` Optional, Boolean to bind to to check if all validations have passed
-7. ```bind:validate``` Optional, Object specifying what to validate against, defaulting to
+5. ```{suggestPassword}``` Optional, Boolean to suggest a password that will pass the validations
+6. ```bind:password``` Optional, String to bind to the password
+7. ```bind:validated``` Optional, Boolean to bind to to check if all validations have passed
+8. ```bind:validate``` Optional, Object specifying what to validate against, defaulting to
 ```
 {
-  length: { cnt: 12 }, // A total of 12 character in length
-  uppercase: { cnt: 1 }, // At least 1 Uppercase letter
-  lowercase: { cnt: 1 }, // At lease 1 Lowercase letter
-  numbers: { cnt: 1 }, // At lease 1 Number
-  special: { cnt: 1 } // At least 1 Special character (@#$%~`!^&*()_+\-=\[\]{};':"\\|,.<>\/?)
+  length: { min: 12 }, // A total of 12 character in length
+  uppercase: { min: 1 }, // At least 1 Uppercase letter
+  lowercase: { min: 1 }, // At lease 1 Lowercase letter
+  numbers: { min: 1 }, // At lease 1 Number
+  special: { min: 1 } // At least 1 Special character (@#$%~`!^&*()_+\-=\[\]{};':"\\|,.<>\/?)
 }
 ```
-8. ```on:passwordCheck={handlePasswordEvent}``` Optional, Dispatch handler from the component that returns an Object containing the following
+9. ```on:passwordCheck={handlePasswordEvent}``` Optional, Dispatch handler from the component that returns an Object containing the following
 ```
   {
     password: "", // The typed password value as string
@@ -47,15 +48,16 @@
     let placeholder = "Password";
     let validated = false;
     let validate = {
-        length: { cnt: 7 },
-        uppercase: { cnt: 2 },
-        lowercase: { cnt: 2 },
-        numbers: { cnt: 1 },
-        special: { cnt: 2 }
+        length: { min: 12 },
+        uppercase: { min: 4 },
+        lowercase: { min: 2 },
+        numbers: { min: 3 },
+        special: { min: 1 }
     }
     let showValidations = true;
     let showIcon = true;
     let showHideToggle = true;
+    let suggestPassword = true;
 
     function handlePasswordEvent(e) {
         console.log(e.detail);
@@ -71,7 +73,7 @@
 
 </script>
 
-<Password {placeholder} bind:password bind:validated bind:validate {showValidations} {showIcon} {showHideToggle} on:passwordCheck={handlePasswordEvent}/>
+<Password bind:password bind:validated bind:validate {showValidations} {showIcon} {showHideToggle} {placeholder} {suggestPassword} on:passwordCheck={handlePasswordEvent}/>
 <p>Password: {password}</p>
 <p>Validated: {validated}</p>
 <p>Validate: {JSON.stringify(validate,null,2)}</p>

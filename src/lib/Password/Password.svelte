@@ -8,18 +8,25 @@
     export let type = "password";
     export let validated = false;
     export let validate = {
-        length: { cnt: 12 },
-        uppercase: { cnt: 1 },
-        lowercase: { cnt: 1 },
-        numbers: { cnt: 1 },
-        special: { cnt: 1 }
+        length: { min: 12 },
+        uppercase: { min: 1 },
+        lowercase: { min: 1 },
+        numbers: { min: 1 },
+        special: { min: 1 }
     };
     export let showValidations = true;
     export let showIcon = true;
     export let showHideToggle = true;
+    export let suggestPassword = false;
+
 
     onMount(() => {
-        handleInput({target:{value: ""}})
+        if(suggestPassword) {
+            generatePassword();
+            eye();
+        } else {
+            handleInput({target:{value: ""}})
+        }
     });
 
     function eye() {
@@ -38,60 +45,60 @@
         password = e.target.value;
         let validLength = 0;
         let reqLength = Object.keys(validate).length;
-        if (validate["length"] && validate["length"].cnt) {
+        if (validate["length"] && validate["length"].min) {
             validate["length"].input = {}
             validate["length"].input.length = password.length || 0;
             validate["length"].input.values = password || ""
-            validate["length"].input.valid = validateLength(password.length, validate["length"].cnt) || false;
+            validate["length"].input.valid = validateLength(password.length, validate["length"].min) || false;
             if (validate["length"].input.valid) {
                 validLength = validLength + 1;
             }
         }
 
-        if (validate["uppercase"] && validate["uppercase"].cnt) {
+        if (validate["uppercase"] && validate["uppercase"].min) {
             let matchUpC = password.match(/[A-Z]/g) || [];
             validate["uppercase"].input = {}
             validate["uppercase"].input.length = matchUpC.length || 0
             validate["uppercase"].input.values = matchUpC || []
-            validate["uppercase"].input.valid = validateLength(matchUpC.length, validate["uppercase"].cnt) || false
+            validate["uppercase"].input.valid = validateLength(matchUpC.length, validate["uppercase"].min) || false
             if (validate["uppercase"].input.valid) {
                 validLength = validLength + 1;
             }
         }
 
-        if (validate["lowercase"] && validate["lowercase"].cnt) {
+        if (validate["lowercase"] && validate["lowercase"].min) {
             let matchLo = password.match(/[a-z]/g) || [];
             validate["lowercase"].input = {}
             validate["lowercase"].input.length = matchLo.length || 0
             validate["lowercase"].input.values = matchLo || []
             validate["lowercase"].input.valid = validateLength(
                 matchLo.length,
-                validate["lowercase"].cnt || false
+                validate["lowercase"].min || false
             )
             if (validate["lowercase"].input.valid) {
                 validLength = validLength + 1;
             }
         }
 
-        if (validate["numbers"] && validate["numbers"].cnt) {
+        if (validate["numbers"] && validate["numbers"].min) {
             let matchNum = password.match(/[0-9]/g) || [];
             validate["numbers"].input = {}
             validate["numbers"].input.length = matchNum.length || 0
             validate["numbers"].input.values = matchNum || []
-            validate["numbers"].input.valid = validateLength(matchNum.length, validate["numbers"].cnt) || false
+            validate["numbers"].input.valid = validateLength(matchNum.length, validate["numbers"].min) || false
             if (validate["numbers"].input.valid) {
                 validLength = validLength + 1;
             }
         }
 
-        if (validate["special"] && validate["special"].cnt) {
+        if (validate["special"] && validate["special"].min) {
             let matchSp =
                 password.match(/[ @#$%~`!^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g) ||
                 [];
             validate["special"].input = {}
             validate["special"].input.length = matchSp.length || 0
             validate["special"].input.values = matchSp || []
-            validate["special"].input.valid = validateLength(matchSp.length, validate["special"].cnt) || false
+            validate["special"].input.valid = validateLength(matchSp.length, validate["special"].min) || false
             if (validate["special"].input.valid) {
                 validLength = validLength + 1;
             }
@@ -109,6 +116,47 @@
             validated,
         });
     };
+
+    function generatePassword() {
+        let numberChars = "0123456789";
+        let upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let lowerChars = "abcdefghijklmnopqrstuvwxyz";
+        let specialChars = " @#$%~`!^&*()_+\-=\[\]{};':\\|,.<>\/?" + '"';
+        let allChars = numberChars + upperChars + lowerChars + specialChars;
+        let initString = ""
+        const shuffle = str => [...str].sort(()=>Math.random()-.5).join('');
+        if(validate["uppercase"]) {
+            let s = shuffle(upperChars);
+            let ss = s.substring(0,validate["uppercase"].min);
+            initString = initString + ss
+        }
+        if(validate["lowercase"]) {
+            let s = shuffle(lowerChars);
+            let ss = s.substring(0,validate["lowercase"].min);
+            initString = initString + ss
+        }
+        if(validate["numbers"]) {
+            let s = shuffle(numberChars);
+            let ss = s.substring(0,validate["numbers"].min);
+            initString = initString + ss
+        }
+        if(validate["special"]) {
+            let s = shuffle(specialChars);
+            let ss = s.substring(0,validate["special"].min);
+            initString = initString + ss
+        }
+        if(validate["length"] && initString.length < validate["length"].min) {
+            let s = shuffle(allChars);
+            let randomnumber =  Math.random() * 30 | 20;
+            let c = randomnumber - initString.length // can be validate["length"].min but that is the minimum requirement and not the best
+            let ss = s.substring(0,c);
+            initString = initString + ss
+        }
+        console.log("initString: ", initString)
+        let f = shuffle(initString);
+        console.log("final: ", f)
+        handleInput({target:{value: f}})
+    }
 </script>
 
 <form>
@@ -117,6 +165,7 @@
         {type}
         {password}
         {placeholder}
+        value={password}
         on:input={handleInput}
         on:focus={handleInput}
         on:blur={handleInput}
@@ -129,31 +178,31 @@
 {#if showValidations}
     {#if validate["uppercase"] && validate["uppercase"].input}
         <p class={validate["uppercase"].input.valid ? "good" : "bad"}>
-            Should contain atleast {validate["uppercase"].cnt}
+            Should contain atleast {validate["uppercase"].min}
             uppercase charanters
         </p>
     {/if}
     {#if validate["lowercase"] && validate["lowercase"].input}
         <p class={validate["lowercase"].input.valid ? "good" : "bad"}>
-            Should contain atleast {validate["lowercase"].cnt}
+            Should contain atleast {validate["lowercase"].min}
             lowercase charanters
         </p>
     {/if}
     {#if validate["special"] && validate["special"].input}
         <p class={validate["special"].input.valid ? "good" : "bad"}>
-            Should contain atleast {validate["special"].cnt}
+            Should contain atleast {validate["special"].min}
             special charanters
         </p>
     {/if}
     {#if validate["numbers"] && validate["numbers"].input}
         <p class={validate["numbers"].input.valid ? "good" : "bad"}>
-            Should contain atleast {validate["numbers"].cnt}
+            Should contain atleast {validate["numbers"].min}
             numbers
         </p>
     {/if}
     {#if validate["length"] && validate["length"].input}
         <p class={validate["length"].input.valid ? "good" : "bad"}>
-            Should contain atleast {validate["length"].cnt} characters in total
+            Should contain atleast {validate["length"].min} characters in total
         </p>
     {/if}
 {/if}

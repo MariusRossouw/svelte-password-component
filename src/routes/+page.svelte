@@ -4,15 +4,16 @@
     let placeholder = "Password";
     let validated = false;
     let validate = {
-        length: { cnt: 12 },
-        uppercase: { cnt: 1 },
-        lowercase: { cnt: 1 },
-        numbers: { cnt: 1 },
-        special: { cnt: 1 }
+        length: { min: 12 },
+        uppercase: { min: 7 },
+        lowercase: { min: 1 },
+        numbers: { min: 1 },
+        special: { min: 1 }
     }
     let showValidations = true;
     let showIcon = true;
     let showHideToggle = true;
+    let suggestPassword = true;
 
     function handlePasswordEvent(e) {
         console.log(e.detail);
@@ -28,7 +29,7 @@
 
 </script>
 
-<Password {placeholder} bind:password bind:validated bind:validate {showValidations} {showIcon} {showHideToggle} on:passwordCheck={handlePasswordEvent}/>
+<Password bind:password bind:validated bind:validate {showValidations} {showIcon} {showHideToggle} {placeholder} {suggestPassword} on:passwordCheck={handlePasswordEvent}/>
 <p>Password: {password}</p>
 <p>Validated: {validated}</p>
 <p>Validate: {JSON.stringify(validate,null,2)}</p>
