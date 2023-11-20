@@ -5,7 +5,7 @@
     let validated = false;
     let validate = {
         length: { min: 12 },
-        uppercase: { min: 7 },
+        uppercase: { min: 1 },
         lowercase: { min: 1 },
         numbers: { min: 1 },
         special: { min: 1 }
@@ -32,4 +32,4 @@
 <Password bind:password bind:validated bind:validate {showValidations} {showIcon} {showHideToggle} {placeholder} {suggestPassword} on:passwordCheck={handlePasswordEvent}/>
 <p>Password: {password}</p>
 <p>Validated: {validated}</p>
-<p>Validate: {JSON.stringify(validate,null,2)}</p>
+<pre>Validate: {JSON.stringify(validate,null,2)}</pre>

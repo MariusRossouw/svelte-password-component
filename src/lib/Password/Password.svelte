@@ -179,30 +179,30 @@
     {#if validate["uppercase"] && validate["uppercase"].input}
         <p class={validate["uppercase"].input.valid ? "good" : "bad"}>
             Should contain atleast {validate["uppercase"].min}
-            uppercase charanters
+            uppercase charanter{#if validate["uppercase"].min > 1}s{/if}
         </p>
     {/if}
     {#if validate["lowercase"] && validate["lowercase"].input}
         <p class={validate["lowercase"].input.valid ? "good" : "bad"}>
             Should contain atleast {validate["lowercase"].min}
-            lowercase charanters
+            lowercase charanter{#if validate["lowercase"].min > 1}s{/if}
         </p>
     {/if}
     {#if validate["special"] && validate["special"].input}
         <p class={validate["special"].input.valid ? "good" : "bad"}>
             Should contain atleast {validate["special"].min}
-            special charanters
+            special charanter{#if validate["special"].min > 1}s{/if}
         </p>
     {/if}
     {#if validate["numbers"] && validate["numbers"].input}
         <p class={validate["numbers"].input.valid ? "good" : "bad"}>
             Should contain atleast {validate["numbers"].min}
-            numbers
+            number{#if validate["numbers"].min > 1}s{/if}
         </p>
     {/if}
     {#if validate["length"] && validate["length"].input}
         <p class={validate["length"].input.valid ? "good" : "bad"}>
-            Should contain atleast {validate["length"].min} characters in total
+            Should contain atleast {validate["length"].min} character{#if validate["length"].min > 1}s{/if} in total
         </p>
     {/if}
 {/if}
