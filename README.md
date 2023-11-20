@@ -28,7 +28,7 @@ import { Password } from 'svelte-password-component'
 6. ```bind:password``` Optional, String to bind to the password
 7. ```bind:validated``` Optional, Boolean to bind to to check if all validations have passed
 8. ```bind:validate``` Optional, Object specifying what to validate against, defaulting to
-```json
+```js
 {
   length: { min: 12 }, // A total of 12 character in length
   uppercase: { min: 1 }, // At least 1 Uppercase letter
@@ -38,7 +38,7 @@ import { Password } from 'svelte-password-component'
 }
 ```
 9. ```on:passwordCheck={handlePasswordEvent}``` Optional, Dispatch handler from the component that returns an Object containing the following
-```json
+```js
   {
     password: "", // The typed password value as string
     validate: {}, // The individual validations
