@@ -1,10 +1,10 @@
 {
 	"name": "svelte-password-component",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"author": {
 		"name": "Marius F Rossouw"
 	  },
-	  "license": "ISC",
+	"license": "ISC",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",

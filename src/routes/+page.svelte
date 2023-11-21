@@ -5,10 +5,10 @@
     let validated = false;
     let validate = {
         length: { min: 12 },
-        uppercase: { min: 1 },
-        lowercase: { min: 1 },
+        uppercase: { min: 5 },
+        lowercase: { min: 3 },
         numbers: { min: 1 },
-        special: { min: 1 }
+        special: { min: 2 }
     }
     let showValidations = true;
     let showIcon = true;

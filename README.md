@@ -5,7 +5,7 @@
 1. Ensure you have node installed on your OS (v19 and above - recommended)
 2. Navigate to the app where you would like to use the component and run the following in your terminal
 ```bash
-npm install svelte-tab-component --save
+npm install svelte-password-component --save
 ```
 
 ## How to use the component
