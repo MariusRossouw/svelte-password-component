@@ -230,6 +230,8 @@
 
         /* I've used padding so you can see the edges of the elements. */
         padding: var(--passwordFormPadding, 1px);
+
+        margin-bottom: var(--passwordFormMarginBottom, 30px);
     }
 
     input {
