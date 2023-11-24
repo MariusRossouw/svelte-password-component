@@ -225,6 +225,7 @@
         flex-grow: 2;
         /* And hide the input's outline, so the form looks like the outline */
         border: var(--passwordInputBorder, none);
+        padding: 0.8rem 1rem;
     }
 
     /* remove the input focus blue box, it will be in the wrong place. */
@@ -259,12 +260,13 @@
     }
     .icon {
         padding-left: var(--passwordIconPaddingLeft, 25px);
-        margin-left: var(--passwordIconMarginLeft, 5px);
+        margin-left: var(--passwordIconMarginLeft, 15px);
         background: var(
             --passwordIconbackground,
             url("https://raw.githubusercontent.com/MariusRossouw/svelte-password-component/0954bf51d61e9abe8e70359c8cda1cb8f88db105/static/lock.svg") no-repeat left
         );
         background-size: var(--passwordIconBackgroundSize, 13px);
+        /* margin: 0.8rem 1rem; */
     }
     .eye {
         margin-right: var(--passwordEyeMarginRight, 5px);
@@ -274,6 +276,7 @@
         float: var(--passwordEyeFloat, right);
         right: var(--passwordEyeRight, 15px);
         top: var(--passwordEyeTop, 42px);
+        margin: 0.8rem 1rem;
         background-size: var(--passwordEyeBackgroundSize, 100%);
         background-repeat: var(--passwordEyeBackgroundRepeat, no-repeat);
         &:hover {
