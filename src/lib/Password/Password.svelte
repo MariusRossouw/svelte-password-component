@@ -159,7 +159,7 @@
     }
 </script>
 
-<form>
+<form on:submit|preventDefault>
     <input
         class={showIcon ? "icon" : ""}
         {type}
