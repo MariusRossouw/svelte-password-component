@@ -157,9 +157,21 @@
         console.log("final: ", f)
         handleInput({target:{value: f}})
     }
+
+    function handleFocus(e) {
+        // change element border
+        document.getElementById('form').style.border = "1.8px solid #000";
+        handleInput(e);
+    }
+
+    function handleBlur(e) {
+        // change element border
+        document.getElementById('form').style.border = "1px solid #000";
+        handleInput(e);        
+    }
 </script>
 
-<form on:submit|preventDefault>
+<form id="form" on:submit|preventDefault>
     <input
         class={showIcon ? "icon" : ""}
         {type}
@@ -167,8 +179,8 @@
         {placeholder}
         value={password}
         on:input={handleInput}
-        on:focus={handleInput}
-        on:blur={handleInput}
+        on:focus={handleFocus}
+        on:blur={handleBlur}
     />
     {#if showHideToggle}
         <button class="eye" on:click={eye} />
@@ -214,7 +226,7 @@
         flex-direction: row;
 
         /* This bit draws the box around it */
-        border: var(--passwordFormBorder, 1px solid grey);
+        border: var(--passwordFormBorder, 1px solid #000);
 
         /* I've used padding so you can see the edges of the elements. */
         padding: var(--passwordFormPadding, 1px);
@@ -226,6 +238,7 @@
         /* And hide the input's outline, so the form looks like the outline */
         border: var(--passwordInputBorder, none);
         padding: 0.8rem 1rem;
+        font-size: 1.1rem;
     }
 
     /* remove the input focus blue box, it will be in the wrong place. */
